@@ -39,6 +39,13 @@ class _CalculatorPadState extends State<CalculatorPad> {
         return;
       }
 
+      // Handle pi constant
+      if (token == 'π') {
+        _expression += '3.14159265359';
+        _accumulator = _expression.isEmpty ? '0' : _expression;
+        return;
+      }
+
       // Handle operators cleanly
       if (_isOperator(token)) {
         if (_expression.isEmpty) {
@@ -189,6 +196,20 @@ class _CalculatorPadState extends State<CalculatorPad> {
         Expanded(
           child: Column(
             children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(child: _calcButton('π', bg: Colors.purple[600])),
+                    const SizedBox(width: 10),
+                    Expanded(child: Container()),
+                    const SizedBox(width: 10),
+                    Expanded(child: Container()),
+                    const SizedBox(width: 10),
+                    Expanded(child: Container()),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               Expanded(
                 child: Row(
                   children: [
